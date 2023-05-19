@@ -6,6 +6,8 @@ import com.fundamentos.platzi.springboot.Fundamentos.Beans.MyBeanWithProperties;
 import com.fundamentos.platzi.springboot.Fundamentos.components.ComponentDependency;
 import com.fundamentos.platzi.springboot.Fundamentos.components.ComponentTwoImplement;
 import com.fundamentos.platzi.springboot.Fundamentos.pojo.UserPojo;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,13 +16,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FundamentosApplication implements CommandLineRunner {
 
+	Log LOGGER = LogFactory.getLog(FundamentosApplication.class);
+
 	private ComponentDependency componentDependency;
 	private ComponentDependency componentDependencyTwo;
 	private MyBean myBean;
-
 	private MyBeanWithDependency myBeanWithDependency;
 	private MyBeanWithProperties myBeanWithProperties;
-
 	private UserPojo userPojo;
 
 
@@ -50,5 +52,7 @@ public class FundamentosApplication implements CommandLineRunner {
 		myBeanWithDependency.printWithDependency();
 		System.out.println(myBeanWithProperties.function());
 		System.out.println(userPojo.getAge()+" "+ userPojo.getEmail());
+
+		LOGGER.error("Mensaje de Error de mi app...");
 	}
 }
