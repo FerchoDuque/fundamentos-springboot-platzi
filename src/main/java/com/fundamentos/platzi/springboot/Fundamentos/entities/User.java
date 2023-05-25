@@ -1,6 +1,6 @@
 package com.fundamentos.platzi.springboot.Fundamentos.entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -24,7 +24,7 @@ public class User {
     private LocalDate birthDate;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonManagedReference
+    @JsonIgnore
     private List<Post> posts = new ArrayList<>();
 
     public User() {
