@@ -72,7 +72,11 @@ public class FundamentosApplication implements CommandLineRunner {
 		User user3 = new User("TestTransactional3", "TestTransactional@test.com", LocalDate.of(2023, 03, 10));
 		List<User> users = Arrays.asList(user1, user2, user3);
 
-		userService.saveTransactional(users);
+		try{
+			userService.saveTransactional(users);
+		}catch (Exception e){
+			LOGGER.error("Error al insertar datos a la BD... " + e.toString());
+		}
 
 		userService.getAllUsers().stream().forEach(user -> LOGGER.info("Usuario de transactional: " + user));
 	}
